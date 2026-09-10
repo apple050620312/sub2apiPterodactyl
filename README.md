@@ -25,12 +25,13 @@
 
 本 repo 的 GitHub Actions 每天重建 `ghcr.io/apple050620312/sub2api-pterodactyl:latest`，使映像跟隨上游 `weishaw/sub2api:latest`。每次發布也會保留 `sha-*` tag 以便鎖定或回復版本。
 
+GHCR 映像已公開，Wings 可直接匿名拉取，不需要 registry 帳號或 token。
+
 ## 備份與注意事項
 
 - 請一併備份 `data/`、`postgres/`、`redis/` 與 `.sub2api-secrets`。
 - 不要單獨刪除或修改 `.sub2api-secrets`；其中的資料庫密碼與加密密鑰必須和資料目錄配套。
 - 此 all-in-one 架構是為單一 Pterodactyl 實例的簡易部署設計。大型或高可用環境仍建議使用上游官方的外部 PostgreSQL/Redis 部署。
-- 若 GHCR package 尚未設為 Public，repo 擁有者需在第一次 workflow 發布後，於 GitHub package settings 將 visibility 設為 Public，Wings 才能匿名拉取。
 
 ## 本機建置
 
