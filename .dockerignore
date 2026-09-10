@@ -1,0 +1,9 @@
+.git
+.github
+egg-sub2api.json
+LICENSE
+README.md
+THIRD_PARTY_NOTICES.md
+
+# Only the runtime scripts are needed by the Docker build.
+scripts/smoke-test.sh

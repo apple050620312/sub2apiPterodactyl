@@ -1,0 +1,75 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED FOR PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": "https://raw.githubusercontent.com/apple050620312/sub2apiPterodactyl/main/egg-sub2api.json"
+    },
+    "exported_at": "2026-09-10T20:00:00+08:00",
+    "name": "Sub2API (All-in-One)",
+    "author": "apple050620312@users.noreply.github.com",
+    "description": "Sub2API AI API gateway for Pterodactyl. PostgreSQL 18 and Redis are included, initialized automatically, and persisted with the application data. No external database or manual setup wizard is required.",
+    "features": [],
+    "docker_images": {
+        "GHCR (recommended)": "ghcr.io/apple050620312/sub2api-pterodactyl:latest"
+    },
+    "file_denylist": [
+        ".sub2api-secrets",
+        "postgres/**"
+    ],
+    "startup": "/app/sub2api",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Sub2API is ready.\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!/bin/ash\r\nset -eu\r\necho \"Sub2API is included in the runtime image; no files need to be downloaded.\"\r\n",
+            "container": "alpine:3.21",
+            "entrypoint": "ash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Administrator email",
+            "description": "Email for the first administrator account. Used only during the first startup.",
+            "env_variable": "ADMIN_EMAIL",
+            "default_value": "admin@sub2api.local",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|email|max:254",
+            "field_type": "text"
+        },
+        {
+            "name": "Administrator password",
+            "description": "Optional first-start password. Leave blank to securely generate one and print it once in the console log.",
+            "env_variable": "ADMIN_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|min:8|max:128",
+            "field_type": "text"
+        },
+        {
+            "name": "Timezone",
+            "description": "IANA timezone used by Sub2API and its internal services.",
+            "env_variable": "TZ",
+            "default_value": "Asia/Taipei",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:64",
+            "field_type": "text"
+        },
+        {
+            "name": "Run mode",
+            "description": "standard enables all SaaS features; simple hides billing and balance features.",
+            "env_variable": "RUN_MODE",
+            "default_value": "standard",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:standard,simple",
+            "field_type": "text"
+        }
+    ]
+}
